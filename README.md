@@ -40,15 +40,15 @@
         nameservers:
           - x.x.x.x
         domain:
-          - tiki.com.vn
+          - xxx.com.vn
   hostname: xxx
 ```
 - Trong đó:
   - Dòng đầu tiên `#cloud-config` bắt buộc phải có để nhận diện đây là file cấu hình tự động  
   - `ssh_authorized_keys` là các khóa ssh công cộng (ssh public key) của máy tính cần truy cậo vào server, mỗi admin cần 1 khóa, **không** nên dùng chung  
-  - `address` là địa chỉ IP tĩnh cần đặt, ví dụ *x.x.x.12*  
+  - `address` là địa chỉ IP tĩnh cần đặt, ví dụ *x.x.x.3*  
   - `gateway` là địa chỉ IP của *defaut gateway*, ví dụ *x.x.x.1*  
-  - `nameservers` là địa chỉ IP của các DNS có sẵn, ví dụ *x.x.x.20*  
+  - `nameservers` là địa chỉ IP của các DNS có sẵn, ví dụ *x.x.x.2*  
   - `hostname` là tên của server này, ví dụ *xxxdnsyyy*  
  
 - Khi đã có file `cloud-config`, tiến hành boot từ file iso mới nhất ở trên và gõ lệnh sau để cài đặt
@@ -112,20 +112,20 @@ Ví dụ:
 ```
   // Forward zones
   
-  zone "tiki.com.vn" IN {
+  zone "xxx.com.vn" IN {
     type slave;
     masters {
       x.x.x.x;
     };
-    file "/var/named/records/db.tiki.com.vn";
+    file "/var/named/records/db.xxx.com.vn";
   };
   
-  zone "_msdcs.tiki.com.vn" IN {
+  zone "_msdcs.xxx.com.vn" IN {
     type slave;
     masters {
       x.x.x.x;
     };
-    file "/var/named/records/db.msdcs.tiki.com.vn";
+    file "/var/named/records/db.msdcs.xxx.com.vn";
   };
   
   // Revert zones
@@ -182,13 +182,13 @@ Ví dụ:
 Ví dụ:
 ```
   docker run -d --restart="always" \
-                --name="tkdnsxxx" \
-                --hostname="tkdnsxxx" \
+                --name="xxx" \
+                --hostname="xxx" \
                 --volume `pwd`/config/named.conf.options:/etc/bind/named.conf.options \
                 --volume `pwd`named.conf.local:/etc/bind/named.conf.local \
                 --volume `pwd`/records \
                 --publish 53:53/udp \
-                tkdnsxxx:core
+                xxdnsxxx:core
                 
 ```
 
