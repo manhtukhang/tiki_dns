@@ -1,4 +1,4 @@
-# Triển khai DNS Server sử Docker và RancherOS
+# Triển khai DNS Server sử dụng Docker và RancherOS
 
 ## Mục lục
 - [Giới thiệu](#giới-thiệu)
